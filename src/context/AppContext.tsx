@@ -115,7 +115,8 @@ export const useAppContext = () => {
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  // Auto-login as first mock user so all features are accessible immediately
+  const [currentUser, setCurrentUser] = useState<User | null>(MOCK_USERS[0]);
   const [users, setUsers] = useState<User[]>(MOCK_USERS);
   const [skills] = useState<Skill[]>(MOCK_SKILLS);
   const [userSkills, setUserSkills] = useState<UserSkill[]>(MOCK_USER_SKILLS);
