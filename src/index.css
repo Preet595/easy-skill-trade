@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --background: 160 20% 97%;
-    --foreground: 200 25% 12%;
+    --background: 210 40% 97%;
+    --foreground: 222 35% 12%;
 
     --card: 0 0% 100%;
     --card-foreground: 200 25% 12%;
@@ -15,24 +15,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 200 25% 12%;
 
-    --primary: 172 66% 40%;
+    --primary: 217 90% 56%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 36 95% 56%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 160 15% 92%;
-    --muted-foreground: 200 10% 45%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 15% 40%;
 
-    --accent: 172 40% 92%;
-    --accent-foreground: 172 66% 28%;
+    --accent: 217 100% 96%;
+    --accent-foreground: 221 83% 53%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 160 15% 88%;
-    --input: 160 15% 88%;
-    --ring: 172 66% 40%;
+    --border: 214 20% 86%;
+    --input: 214 20% 86%;
+    --ring: 217 90% 56%;
 
     --radius: 0.75rem;
 
@@ -46,12 +46,12 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Custom tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(172 66% 40%), hsl(172 66% 30%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 90% 56%), hsl(222 84% 48%));
     --gradient-warm: linear-gradient(135deg, hsl(36 95% 56%), hsl(24 95% 50%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(160 20% 97%));
-    --shadow-card: 0 4px 24px -4px hsl(172 66% 40% / 0.1);
-    --shadow-card-hover: 0 8px 32px -4px hsl(172 66% 40% / 0.18);
-    --shadow-button: 0 4px 14px -2px hsl(172 66% 40% / 0.35);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 97%));
+    --shadow-card: 0 4px 24px -4px hsl(217 90% 56% / 0.12);
+    --shadow-card-hover: 0 8px 32px -4px hsl(217 90% 56% / 0.2);
+    --shadow-button: 0 4px 14px -2px hsl(217 90% 56% / 0.4);
   }
 
   .dark {
@@ -61,19 +61,19 @@
     --card-foreground: 160 15% 95%;
     --popover: 200 20% 12%;
     --popover-foreground: 160 15% 95%;
-    --primary: 172 66% 45%;
+    --primary: 217 90% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 36 95% 56%;
     --secondary-foreground: 0 0% 100%;
     --muted: 200 15% 18%;
     --muted-foreground: 160 10% 60%;
-    --accent: 172 40% 18%;
-    --accent-foreground: 172 50% 80%;
+    --accent: 220 50% 20%;
+    --accent-foreground: 213 94% 68%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 200 15% 22%;
     --input: 200 15% 22%;
-    --ring: 172 66% 45%;
+    --ring: 217 90% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -111,5 +111,36 @@
   }
   .shadow-button {
     box-shadow: var(--shadow-button);
+  }
+  .app-page-bg {
+    background-image:
+      radial-gradient(circle at top left, hsl(217 90% 56% / 0.16), transparent 55%),
+      radial-gradient(circle at bottom right, hsl(36 95% 56% / 0.18), transparent 55%),
+      url('/src/assets/bg-skill-pattern.svg');
+    background-size: auto, auto, cover;
+    background-position: top left, bottom right, center;
+    background-repeat: no-repeat;
+  }
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-xl border border-border/60 shadow-card;
+  }
+
+  @keyframes float-soft {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .animate-float-soft {
+    animation: float-soft 8s ease-in-out infinite;
+  }
+
+  @keyframes fade-up-soft {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-up-soft {
+    animation: fade-up-soft 700ms ease-out forwards;
   }
 }

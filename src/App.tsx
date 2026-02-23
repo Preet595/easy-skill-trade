@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard";
 import AddSkills from "./pages/AddSkills";
 import MatchSkills from "./pages/MatchSkills";
 import SwapRequests from "./pages/SwapRequests";
+import Chat from "./pages/Chat";
+import Chats from "./pages/Chats";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/add-skills" element={<AddSkills />} />
             <Route path="/matches" element={<MatchSkills />} />
             <Route path="/swap-requests" element={<SwapRequests />} />
+            <Route path="/chats" element={<Chats />} />
+            <Route path="/chat/:swapRequestId" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

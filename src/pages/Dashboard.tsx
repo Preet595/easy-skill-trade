@@ -1,12 +1,12 @@
 import { Link, Navigate } from "react-router-dom";
 import { useAppContext } from "@/context/AppContext";
 import SkillBadge from "@/components/SkillBadge";
-import { ArrowRight, BookOpen, Search, Send } from "lucide-react";
+import { ArrowRight, BookOpen, Search, Send, Globe2, GraduationCap } from "lucide-react";
 
 const Dashboard = () => {
-  const { currentUser, getUserSkills, swapRequests, getMatches } = useAppContext();
+  const { currentUser, getUserSkills, swapRequests, getMatches, isBootstrapping } = useAppContext();
 
-  if (!currentUser) return <Navigate to="/login" />;
+  if (!currentUser && !isBootstrapping) return <Navigate to="/login" />;
 
   const { offers, learns } = getUserSkills(currentUser.id);
   const matches = getMatches();
@@ -20,8 +20,30 @@ const Dashboard = () => {
     { label: "Pending Requests", value: pendingReceived.length + pendingSent.length, icon: Send, color: "gradient-warm" },
   ];
 
+  const highlightCards = [
+    {
+      icon: BookOpen,
+      title: "Your expertise, shared",
+      description:
+        "Showcase what you can teach and turn your strengths into learning opportunities for others.",
+    },
+    {
+      icon: Globe2,
+      title: "Connect beyond boundaries",
+      description:
+        "Match with people across skills and backgrounds who are looking for exactly what you offer.",
+    },
+    {
+      icon: GraduationCap,
+      title: "Learn what matters",
+      description:
+        "Focus on real‑world skills from peers who have already walked the path you want to take.",
+    },
+  ];
+
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
+    <div className="app-page-bg min-h-[calc(100vh-4rem)]">
+      <div className="container mx-auto px-4 py-8 max-w-5xl">
       {/* Greeting */}
       <div className="mb-8 animate-fade-in">
         <h1 className="text-3xl font-bold text-foreground">
@@ -71,6 +93,23 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Experience Highlights */}
+      <div className="mb-8 grid gap-4 md:grid-cols-3 animate-fade-in" style={{ animationDelay: "280ms" }}>
+        {highlightCards.map((card, i) => (
+          <div
+            key={card.title}
+            className="rounded-2xl border border-border bg-card p-6 shadow-card transition-all hover:shadow-card-hover"
+            style={{ animationDelay: `${280 + i * 60}ms` }}
+          >
+            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <card.icon className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-bold text-foreground leading-snug">{card.title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+          </div>
+        ))}
+      </div>
+
       {/* Quick Actions */}
       <div className="grid sm:grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: "360ms" }}>
         {[
@@ -90,6 +129,7 @@ const Dashboard = () => {
             <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </Link>
         ))}
+      </div>
       </div>
     </div>
   );

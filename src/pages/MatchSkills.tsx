@@ -5,10 +5,10 @@ import { ArrowRightLeft, Search, Send } from "lucide-react";
 import { useState } from "react";
 
 const MatchSkills = () => {
-  const { currentUser, getMatches, sendSwapRequest, swapRequests } = useAppContext();
+  const { currentUser, getMatches, sendSwapRequest, swapRequests, isBootstrapping } = useAppContext();
   const [sentFeedback, setSentFeedback] = useState<string | null>(null);
 
-  if (!currentUser) return <Navigate to="/login" />;
+  if (!currentUser && !isBootstrapping) return <Navigate to="/login" />;
 
   const matches = getMatches();
 
@@ -24,7 +24,8 @@ const MatchSkills = () => {
     );
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="app-page-bg min-h-[calc(100vh-4rem)]">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="mb-8 animate-fade-in">
         <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
           <Search className="h-8 w-8 text-primary" />
@@ -104,6 +105,7 @@ const MatchSkills = () => {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 };

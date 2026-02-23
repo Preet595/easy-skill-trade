@@ -60,6 +60,37 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Run with MySQL persistence
+
+This project now includes a Node.js API (`server/index.js`) that stores users, skills, and swap requests in MySQL.
+
+### 1) Create database and tables
+
+- Create a MySQL database named `easy_skill_trade`.
+- Run the SQL in [db/schema.sql](db/schema.sql).
+
+### 2) Configure environment
+
+- Copy `.env.example` to `.env`.
+- Set your MySQL credentials in `.env`.
+
+### 3) Install dependencies
+
+```sh
+npm install
+```
+
+### 4) Start frontend + API together
+
+```sh
+npm run dev:full
+```
+
+- Frontend: `http://localhost:8080`
+- API: `http://localhost:3001`
+
+If your PowerShell blocks `npm`, use `npm.cmd` instead.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.

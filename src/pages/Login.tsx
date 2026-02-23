@@ -11,14 +11,14 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     if (!email.trim() || !password.trim()) {
       setError("All fields are required");
       return;
     }
-    const success = login(email.trim(), password);
+    const success = await login(email.trim(), password);
     if (success) {
       navigate("/dashboard");
     } else {
@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
+    <div className="app-page-bg flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
       <div className="w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl gradient-hero mb-4">
